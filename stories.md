@@ -21,3 +21,6 @@
     of results
     - dictionaries
     - synonyms
+- [] enhance results 
+    - [] so it can differentiate `poire` from `poireau`
+    - [] so it can manage `AND` and `OR` queries

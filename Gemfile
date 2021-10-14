@@ -52,6 +52,17 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+
+  gem 'brakeman'
+  gem 'bundler-audit'
+  gem 'factory_bot_rails'
+  # helps to find unused factories and traits
+  gem 'factory_trace'
+  gem 'faker'
+  # necessary if using ruby 3+
+  gem 'rexml'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
