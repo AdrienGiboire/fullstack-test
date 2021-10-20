@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  get '/api/recipes/search', to: 'api/recipes#search'
+  # could become a POST request if we ever want to cache seachers
+  get '/api/recipes/search', to: 'api/recipes/searches#create'
+
+  root to: 'application#index'
 end

@@ -10,9 +10,18 @@
     - [] recipes are clickable
 - [] user can see the details of a recipe
 
+# TODO
+
+- [x] implement models
+- [x] implement import rake task
+- [x] implement api endpoint to search recipes
+- [] implement basic form
+- [] implement search as-typing
+- [] display results
+
 # IMPROVEMENT
 
-- [] use jobs to update the DB
+- [] use jobs to update the DB (to prevent big, long cluttering tasks)
 - [] build a list of ingredients (based on the ingredients mentioned in recipes)
     - [] import data from JSON to SQL (rake task)
     - [] extract ingredients into a dedicated table
@@ -21,6 +30,6 @@
     of results
     - dictionaries
     - synonyms
-- [] enhance results 
+- [] enhance results
     - [] so it can differentiate `poire` from `poireau`
     - [] so it can manage `AND` and `OR` queries

@@ -7,14 +7,14 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     @ingredient_2 = @recipe.ingredients.last.split(' ').sample
   end
 
-  test "search with one known ingredient returns a result" do
+  test "searching with one known ingredient returns a result" do
     get api_recipes_search_path(query: @ingredient_1)
 
     assert :success
     assert_equal ([@recipe]).to_json, response.body
   end
 
-  test "search with several known ingredients returns a result" do
+  test "searching with several known ingredients returns a result" do
     get api_recipes_search_path(query: [@ingredient_1, @ingredient_2])
 
     assert :success
