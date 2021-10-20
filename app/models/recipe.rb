@@ -7,7 +7,7 @@ class Recipe < ApplicationRecord
       sub_where_clause += if sub_where_clause.empty? then
                         "ingredient ILIKE '%#{ingredient}%'"
                       else
-                        "OR ingredient ILIKE '%#{ingredient}%'"
+                        "AND ingredient ILIKE '%#{ingredient}%'"
                       end
     end
     where_clause = "EXISTS (SELECT FROM unnest(ingredients) ingredient WHERE 1=1 AND ( #{sub_where_clause} ))"
