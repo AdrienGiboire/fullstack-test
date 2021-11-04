@@ -10,6 +10,7 @@ class SearchForm extends React.Component {
 
     this.state = { ingredients: [''] }
     this.inputsContainerRef = React.createRef()
+    this.delayFunction = null
   }
 
   handleChange (event, index) {
@@ -21,7 +22,12 @@ class SearchForm extends React.Component {
           { [index]: event.target.value }
         )
       },
-      () => EventBus.emit('searchApply', this.state)
+      () => {
+        this.delayFunction && clearTimeout(this.delayFunction)
+        this.delayFunction = setTimeout(() => {
+          EventBus.emit('searchApply', this.state)
+        }, 500)
+      }
     )
   }
 
