@@ -1,5 +1,7 @@
 class Recipe < ApplicationRecord
   def self.search_by_ingredients ingredients
+    return [] if ingredients.nil?
+
     ingredients = [ingredients] unless ingredients.is_a?(Array)
 
     sub_where_clause = ""
