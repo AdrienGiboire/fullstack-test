@@ -4,12 +4,23 @@ class Recipe < ApplicationRecord
 
     ingredients = [ingredients] unless ingredients.is_a?(Array)
 
+    select_clause = "*"
     where_clause = ""
-    ingredients.each do |ingredient|
-      where_clause += " AND " unless where_clause.empty?
-      where_clause += "EXISTS (SELECT FROM unnest(ingredients) ingredient WHERE 1=1 AND ( ingredient ILIKE '%#{ingredient}%' ))"
+    order_clause = ""
+    ingredients.each.with_index do |ingredient, index|
+      exists_clause = "EXISTS (SELECT FROM UNNEST(ingredients) ingredient WHERE ingredient ILIKE '%#{ingredient}%')"
+
+      select_clause += ", CASE WHEN #{exists_clause} THEN 1 ELSE 0 END AS relevance_#{index}"
+
+      where_clause += " OR " unless where_clause.empty?
+      where_clause += exists_clause
+
+      order_clause += ", " unless order_clause.empty?
+      order_clause += "relevance_#{index} DESC"
     end
 
-    where(where_clause)
+    select(select_clause).
+      where(where_clause).
+      order(Arel.sql(order_clause))
   end
 end
